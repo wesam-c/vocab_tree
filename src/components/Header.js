@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import logo from '../image/logo.png';
 import '../index.css';
+import { IoIosClose } from "react-icons/io";
+import { IoIosMenu } from "react-icons/io";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // State for menu
@@ -20,7 +22,8 @@ const Header = () => {
 
         {/* Mobile Menu Toggle Button */}
         <button onClick={toggleMenu} className='md:hidden p-2'>
-          {isOpen ? 'Close' : 'Menu'}
+          {isOpen ? <IoIosClose className='text-4xl'/> : <IoIosMenu className='text-4xl'/>
+          }
         </button>
 
         {/* Navigation Links */}
