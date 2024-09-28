@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&family=Sofadi+One&display=swap');
+
+@layer base {
+    .nav-item {
+        @apply text-gray-400 hover:text-green-600 text-xl font-bold px-4 py-1.5 rounded-full hover:bg-white/60 transition duration-300
+    }
+}
+
+.sofadi-one-regular {
+    font-family: "Sofadi One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+  .signika-negative-unique {
+    font-family: "Signika Negative", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
