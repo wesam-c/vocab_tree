@@ -29,7 +29,7 @@ const LandingPageBody = () => {
         className={`absolute z-0 md:mt-56 mt-96 top-0 md:right-44 right-28 transform translate-x-1/2 w-[300px] md:w-[500px] opacity-70 transition-transform duration-500 ${rotate ? 'rotate-3' : ''}`} 
       />
 
-      <h1 className="text-4xl relative z-10 text-center font-bold text-yellow-950 signika-negative-unique mt-5 mb-5">
+      <h1 className="text-4xl relative z-10 text-center font-bold text-yellow-950 signika-negative-unique mt-28 mb-5">
         Grow Your Vocabulary, One Word at a Time.
       </h1>
 
@@ -37,7 +37,7 @@ const LandingPageBody = () => {
         Learn and grow your vocabulary effortlessly using flashcards
       </p>
 
-      <a href="/start" className="relative z-10 bg-lime-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 mb-8 flex gap-2 items-center group">
+      <a href="/start" className="relative z-10 bg-lime-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 mb-8 mt-6 flex gap-2 items-center group">
         Start Learning
         <IoIosArrowRoundForward className='text-2xl group-hover:translate-x-2 group-hover:rotate-45 duration-300'/>
       </a>

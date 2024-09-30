@@ -1,15 +1,19 @@
 import React from 'react';
 import LandingPageBody from '../components/LandingPageBody';
 import Header from '../components/Header';
+import Banner from '../components/Banner/Banner';
+import Users from '../components/Users/Users';
 
 const Landing = () => {
   return (
     <div 
-      className="bg-cover bg-center min-h-screen bg-lime-200 dark:bg-slate-900 " 
+      className=" overflow-x-hidden bg-lime-200 dark:bg-slate-900 " 
       
     >
         <Header />
         <LandingPageBody />
+        <Banner />
+        <Users />
     </div>
   );
 };
