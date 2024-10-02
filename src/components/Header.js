@@ -29,7 +29,7 @@ const Header = () => {
         {/* Navigation Links */}
         <nav className={`md:flex space-x-8 hidden p-0.5 border-white/15 rounded-full bg-white/50 backdrop-blur ${isOpen ? 'block' : 'hidden'} md:block`}>
           <a href="/" className='nav-item'>Home</a>
-          <a href="/VocabTree" className='nav-item'>Try it</a>
+          <a href="/VocabTreePage" className='nav-item'>Try it</a>
         </nav>
       </div>
 
