@@ -37,7 +37,7 @@ const LandingPageBody = () => {
         Learn and grow your vocabulary effortlessly using flashcards
       </p>
 
-      <a href="/start" className="relative z-10 bg-lime-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 mb-8 mt-6 flex gap-2 items-center group">
+      <a href="/VocabTreePage" className="relative z-10 bg-lime-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 mb-8 mt-6 flex gap-2 items-center group">
         Start Learning
         <IoIosArrowRoundForward className='text-2xl group-hover:translate-x-2 group-hover:rotate-45 duration-300'/>
       </a>
