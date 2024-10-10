@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// Add Component
 const Add = ({ addFlashcard }) => {
   const [word, setWord] = useState('');
   const [definition, setDefinition] = useState('');
@@ -86,4 +87,65 @@ const Add = ({ addFlashcard }) => {
   );
 };
 
-export default Add;
+// Flashcard Component
+const Flashcard = ({ word, type, definition }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const flipCard = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  return (
+    <div
+      className={`border rounded-lg p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center ${
+        isFlipped ? 'bg-gray-200' : 'bg-white'
+      }`}
+      style={{
+        width: '250px',
+        height: '180px',
+        textAlign: 'center',
+      }}
+      onClick={flipCard}
+    >
+      {!isFlipped ? (
+        <div className="text-3xl font-extrabold text-lime-700">{word}</div>
+      ) : (
+        <div className="text-black">
+          <div className="mt-2 text-2xl font-extrabold">{definition}</div>
+          <div className="text-sm font-semibold mt-5">Type: {type}</div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Parent Component to manage flashcards
+const FlashcardApp = () => {
+  const [flashcards, setFlashcards] = useState([]); // Initialize flashcards state
+
+  // Function to add a new flashcard at the top of the list
+  const addFlashcard = (newFlashcard) => {
+    setFlashcards((prevFlashcards) => [newFlashcard, ...prevFlashcards]); // Add new flashcard to the top
+  };
+
+  return (
+    <div className="container mx-auto">
+      
+      <Add addFlashcard={addFlashcard} />
+      
+      {/* Flashcard List */}
+      <div className="mt-6 flex flex-wrap gap-4 justify-center">
+        {flashcards.map((flashcard, index) => (
+          <Flashcard 
+            key={index} 
+            word={flashcard.word} 
+            type={flashcard.type} 
+            definition={flashcard.definition} 
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FlashcardApp;

@@ -5,6 +5,7 @@ import VocabTreePage from './pages/VocabTreePage';
 import Landing from './pages/Landing';
 import SignInPage from './pages/SignIn';
 import SignUpPage from './pages/SignUp';
+import BlogPage from './pages/Blog';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/vocabTreePage" element={<VocabTreePage />} />
         <Route path="/SignIn" element={<SignInPage />} />
         <Route path="/SignUp" element={<SignUpPage />} />
+        <Route path="/Blog" element={<BlogPage />} />
       </Routes>
     </Router>
   );
