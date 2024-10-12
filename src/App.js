@@ -6,6 +6,7 @@ import Landing from './pages/Landing';
 import SignInPage from './pages/SignIn';
 import SignUpPage from './pages/SignUp';
 import BlogPage from './pages/Blog';
+import ForgetPasswordPage from './components/ForgetPassword';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/SignIn" element={<SignInPage />} />
         <Route path="/SignUp" element={<SignUpPage />} />
         <Route path="/Blog" element={<BlogPage />} />
+        <Route path="/ForgetPassword" element={<ForgetPasswordPage />} />
       </Routes>
     </Router>
   );
