@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState} from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation  } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
 const SignIn = () => {
@@ -10,7 +10,8 @@ const SignIn = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const redirectPath = location.state?.path || "/vocabTreePage";
     const handleSubmit = async(e) => {
         // always pay attention to the order - make the prevent default the first to prevent sending the data
         e.preventDefault();
@@ -19,7 +20,7 @@ const SignIn = () => {
             setError("")
             setLoading(true)
             await login(emailRef.current.value , passwordRef.current.value)
-            navigate("/vocabTreePage");
+            navigate(redirectPath, { replace: true });
         }catch{
             setError("Failed to log in")
         }

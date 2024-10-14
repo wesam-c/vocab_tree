@@ -8,6 +8,7 @@ import SignUpPage from './pages/SignUp';
 import BlogPage from './pages/Blog';
 import ForgetPasswordPage from './components/ForgetPassword';
 import ProfilePage from './pages/Profile';
+import RequireAuth from "./context/RequireAuth";
 
 const App = () => {
   return (
@@ -15,12 +16,20 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/vocabTreePage" element={<VocabTreePage />} />
+        <Route path="/vocabTreePage" element={
+          <RequireAuth>
+            <VocabTreePage />
+          </RequireAuth>
+        } />
         <Route path="/SignIn" element={<SignInPage />} />
         <Route path="/SignUp" element={<SignUpPage />} />
         <Route path="/Blog" element={<BlogPage />} />
         <Route path="/ForgetPassword" element={<ForgetPasswordPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={
+          <RequireAuth>
+            <ProfilePage />
+          </RequireAuth>
+        } />
       </Routes>
     </Router>
   );
