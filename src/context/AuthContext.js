@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
 import { useContext } from "react";
 import auth from '../firebase'; // Importing auth as default (exported as default in Firebase config)
 
@@ -15,9 +15,15 @@ const AuthProvider = ({ children }) => {
 
     // Function to sign up a new user using Firebase
     const signup = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password);
+        return createUserWithEmailAndPassword(auth, email, password);
+    };
+    const logout = () => {
+        return signOut(auth);
     };
 
+    const login = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    };
     // useEffect runs when the component mounts, setting up a listener for auth state changes
     useEffect(() => {
         // Firebase listener that checks if the user is logged in or out
@@ -37,7 +43,7 @@ const AuthProvider = ({ children }) => {
 
     // Return the context provider with the currentUser and signup function available for consumers
     return (
-        <AuthContext.Provider value={{ currentUser, signup }}>
+        <AuthContext.Provider value={{ currentUser, signup, logout, login }}>
             {/* Render children only after the loading state is set to false */}
             {!loading && children}
         </AuthContext.Provider>
