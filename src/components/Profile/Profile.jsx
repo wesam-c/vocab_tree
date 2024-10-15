@@ -7,7 +7,7 @@ const ProfileHeader = ({ user }) => {
   return (
     <div className="relative bg-white shadow-md rounded-lg">
       {/* Cover Photo */}
-      <div className="h-48 w-full rounded-t-lg overflow-hidden">
+      <div className="h-44 w-full rounded-t-lg overflow-hidden">
         <img 
           src={user.coverPhoto || coverPicture} 
           alt="Cover" 
@@ -17,29 +17,31 @@ const ProfileHeader = ({ user }) => {
 
       {/* Settings Icon */}
       <button 
-        className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
+        className="absolute top-4 right-4 text-gray-300 hover:text-gray-500"
         title="Settings"
       >
         <FaCog size={20} />
       </button>
 
-      {/* Profile Picture and Info Section */}
-      <div className="flex p-4">
-        {/* Profile Picture */}
-        <div className="relative">
+      {/* Profile Picture */}
+      <div className="relative flex justify-start ml-6"> {/* Move profile picture to the left */}
+        <div className="absolute -bottom-12">
           <img 
-            src={user.profilePicture || profilePicture} // Use local image as default if user doesn't provide one
+            src={user.profilePicture || profilePicture} 
             alt="Profile" 
-            className="w-24 h-24 rounded-full border-4 border-black -top-19 left-4" // Adjusted positioning to overlap cover photo
+            className="w-24 h-24 rounded-full border-4 border-white" // Border added to highlight the profile picture
           />
         </div>
+      </div>
 
-        {/* User Information */}
-        <div className="ml-32 flex-grow pt-6"> {/* Added padding-top to create space for profile picture */}
+      {/* User Information and Words Count Row */}
+      <div className="flex items-center justify-between mt-16 px-6"> {/* Flex container to align items horizontally */}
+        {/* User Information (Left Aligned) */}
+        <div className="flex flex-col">
           <h2 className="text-lg font-bold">{user.name}</h2>
-          <div className="flex items-center">
+          <div className="flex items-center mt-2">
             {/* Current Languages with Flags */}
-            <div className="languages flex space-x-1">
+            <div className="languages flex space-x-2">
               {user.languages && user.languages.length > 0 ? (
                 user.languages.map((lang, index) => (
                   <span key={index} title={lang.name}>
@@ -55,9 +57,9 @@ const ProfileHeader = ({ user }) => {
           </div>
         </div>
 
-        {/* Words Count in a Box */}
+        {/* Words Count (Right Aligned) */}
         <div className="flex-shrink-0 flex items-center">
-          <div className="bg-slate-200 text-white font-semibold py-3 px-2 rounded-md flex flex-col items-center">
+          <div className="bg-slate-200 text-white font-semibold py-1 px-4 rounded-md flex flex-col items-center">
             <span className="text-2xl text-black">{user.wordsCount} 400</span> {/* Main count size */}
             <span className="text-sm text-slate-700">Words Learned</span> {/* Smaller font for description */}
           </div>
