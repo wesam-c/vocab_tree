@@ -1,10 +1,9 @@
-// Header.js
 import React, { useState, useRef, useEffect } from 'react';
 import logo from '../image/logo.png';
 import '../index.css';
 import { IoIosClose, IoIosMenu } from "react-icons/io";
 import { useAuth } from '../context/AuthContext';
-import { FaUserCircle } from "react-icons/fa"; // profile icon
+import { FaUserCircle, FaSun, FaMoon } from "react-icons/fa"; // Importing Sun and Moon icons
 import { Navigate, useNavigate } from 'react-router';
 
 const Header = () => {
@@ -13,6 +12,8 @@ const Header = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const dropdownRef = useRef(null); // Ref for the dropdown menu
+
+  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,6 +29,15 @@ const Header = () => {
       navigate("/signin");
     } catch (error) {
       console.error("Failed to log out", error);
+    }
+  };
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
     }
   };
 
@@ -73,6 +83,12 @@ const Header = () => {
             {currentUser ? (
               <div className="flex items-center relative mr-7"> {/* Flex container for profile icon and link */}
                 {/* Link to Vocab Tree Page */}
+                <a href="/" className="nav-item text-lime-700 hover:text-lime-400 mr-4">
+                  Home
+                </a>
+                <a href="/vocabTreePage" className="nav-item text-lime-700 hover:text-lime-400 mr-4">
+                  Add
+                </a>
                 <a href="/vocabTreePage" className="nav-item text-lime-700 hover:text-lime-400 mr-4">
                   Cards
                 </a>
@@ -104,6 +120,19 @@ const Header = () => {
                         }}
                       >
                         Logout
+                      </button>
+
+                      {/* Theme Toggle Option */}
+                      <button 
+                        onClick={toggleTheme} 
+                        className="flex items-center justify-between px-4 py-2 w-full text-left"
+                      >
+                        <span className="text-sm text-gray-700">Theme</span>
+                        {isDarkMode ? (
+                          <FaSun className="text-yellow-500" />
+                        ) : (
+                          <FaMoon className="text-gray-600" />
+                        )}
                       </button>
                     </div>
                   )}
@@ -147,6 +176,18 @@ const Header = () => {
               }}
             >
               Logout
+            </button>
+            {/* Theme Toggle Option for Mobile */}
+            <button 
+              onClick={toggleTheme} 
+              className="flex items-center justify-between px-4 py-2 w-full text-left"
+            >
+              <span className="text-sm text-gray-700">Theme</span>
+              {isDarkMode ? (
+                <FaSun className="text-yellow-500" />
+              ) : (
+                <FaMoon className="text-gray-600" />
+              )}
             </button>
           </>
         ) : (

@@ -16,7 +16,7 @@ const Users = () => {
             initial={{ opacity:0 }}
             whileInView={{ opacity:1 }}
             style={bgStyle}
-            className="container py-24 md:py-48 ">
+            className="container py-24 md:py-44 ">
                 <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -27,7 +27,7 @@ const Users = () => {
                         <p className="text-base md:text-lg text-gray-600">
                             Thousands of people are using Vocab Tree's flashcards to make learning new words easy and fun. Join them now!
                         </p>
-                        <a href="" className="!mt-8 rounded-2xl  inline-flex  bg-lime-400 text-white px-6 py-3 md:px-8 md:py-4 text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300">Join Now</a>
+                        <a href="" className="!mt-8 rounded-2xl  inline-flex  bg-lime-400 text-white px-6 py-3 md:px-8 md:py-4 text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 no-underline">Join Now</a>
                     </div>
                 </motion.div>
             </motion.div>

@@ -4,7 +4,7 @@ import ProfileHeader from '../components/Profile/Profile';
 
 const ProfilePage = () => {
   const user = {
-    name: 'wesam',
+    name: 'Language man',
     joinDate: 'October 1, 2024', // Format the join date as needed
      // Optional: Provide a URL or leave empty to use the default image
   };

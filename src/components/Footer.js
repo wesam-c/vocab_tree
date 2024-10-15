@@ -8,18 +8,18 @@ const Footer = () => {
         
         {/* Vocab Tree Info */}
         <div className="mb-4 w-full sm:w-1/3">
-          <h3 className="text-lg font-bold">Vocab Tree</h3>
-          <p className="mt-2">Helping you grow your vocabulary, one word at a time.</p>
+          <h3 className="text-2xl font-bold">Vocab Tree</h3>
+          <p className="mt-2 text-lg">Helping you grow your vocabulary, one word at a time.</p>
         </div>
 
         {/* Quick Links */}
         <div className="mb-4 w-full sm:w-1/3">
           <h4 className="text-md font-bold">Quick Links</h4>
           <ul className="mt-2 space-y-2">
-            <li><a href="#about" className="hover:text-lime-500">About Us</a></li>
-            <li><a href="#features" className="hover:text-lime-500">Features</a></li>
-            <li><a href="#contact" className="hover:text-lime-500">Contact</a></li>
-            <li><a href="#privacy" className="hover:text-lime-500">Privacy Policy</a></li>
+            <li><a href="#about" className="text-lime-600 hover:text-black no-underline text-lg">About Us</a></li>
+            <li><a href="#features" className="text-lime-600 hover:text-black no-underline text-lg">Features</a></li>
+            <li><a href="#contact" className="text-lime-600 hover:text-black no-underline text-lg">Contact</a></li>
+            <li><a href="#privacy" className="text-lime-600 hover:text-black no-underline text-lg">Privacy Policy</a></li>
           </ul>
         </div>
 
@@ -28,23 +28,23 @@ const Footer = () => {
           <h4 className="text-md font-bold">Follow Us</h4>
           <ul className="mt-2 flex space-x-4">
             <li>
-              <a href="https://facebook.com" className="hover:text-lime-500" aria-label="Facebook">
-                <FaFacebookF size={24} />
+              <a href="https://facebook.com" className="text-lime-600 hover:text-black" aria-label="Facebook">
+                <FaFacebookF size={26} />
               </a>
             </li>
             <li>
-              <a href="https://twitter.com" className="hover:text-lime-500" aria-label="Twitter">
-                <FaTwitter size={24} />
+              <a href="https://twitter.com" className="text-lime-600 hover:text-black" aria-label="Twitter">
+                <FaTwitter size={26} />
               </a>
             </li>
             <li>
-              <a href="https://instagram.com" className="hover:text-lime-500" aria-label="Instagram">
-                <FaInstagram size={24} />
+              <a href="https://instagram.com" className="text-lime-600 hover:text-black" aria-label="Instagram">
+                <FaInstagram size={26} />
               </a>
             </li>
             <li>
-              <a href="https://linkedin.com" className="hover:text-lime-500" aria-label="LinkedIn">
-                <FaLinkedinIn size={24} />
+              <a href="https://linkedin.com" className="text-lime-600 hover:text-black" aria-label="LinkedIn">
+                <FaLinkedinIn size={26} />
               </a>
             </li>
           </ul>
