@@ -6,12 +6,12 @@ const ProfilePage = () => {
   const user = {
     name: 'wesam',
     joinDate: 'October 1, 2024', // Format the join date as needed
-    profilePicture: '', // Optional: Provide a URL or leave empty to use the default image
+     // Optional: Provide a URL or leave empty to use the default image
   };
 
   return (
-    <div className="bg-lime-200 min-h-screen"> {/* Add the background color and minimum height */}
-      <div className="container mx-auto mt-36">
+    <div className="bg-lime-200 min-h-screen">
+      <div className="container mx-auto pt-24 ">
         
         <ProfileHeader user={user} />
         {/* Additional profile sections can be added below */}
