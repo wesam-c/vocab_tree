@@ -10,7 +10,7 @@ const VocabTreePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-lime-200">
+    <div className="min-h-screen bg-lime-200 dark:bg-gray-800">
       <Header />
       <div className="pt-24 px-2">
         {/* Add Flashcard Form */}

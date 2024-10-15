@@ -10,7 +10,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="bg-lime-200 min-h-screen">
+    <div className="bg-lime-200 min-h-screen dark:bg-gray-800">
       <div className="container mx-auto pt-24 ">
         
         <ProfileHeader user={user} />
