@@ -17,7 +17,7 @@ const languageAbbreviations = {
 const Add = ({ addFlashcard }) => {
   const [word, setWord] = useState('');
   const [definition, setDefinition] = useState('');
-  const [type, setType] = useState('verb'); // Default to 'verb'
+  const [type, setType] = useState('noun'); // Default to 'noun'
   const [wordLanguage, setWordLanguage] = useState('English'); // Default word language
   const [definitionLanguage, setDefinitionLanguage] = useState('English'); // Default definition language
 
@@ -35,8 +35,8 @@ const Add = ({ addFlashcard }) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <div className="p-6 bg-white rounded-lg shadow-lg mt-4">
-        <h2 className="text-2xl font-bold text-center mb-4 text-lime-700">Add New Flashcard</h2>
+      <div className="p-3.5 bg-white rounded-lg shadow-lg mt-2.5">
+        <h2 className="text-xl font-bold text-center mb-3 text-lime-700">Add New Flashcard</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* First row: Word, Definition, and Type */}
@@ -76,8 +76,8 @@ const Add = ({ addFlashcard }) => {
             </select>
           </div>
 
-          {/* Second row: Word Language and Definition Language */}
-          <div className="flex space-x-2">
+          {/* Second Row: Word Language and Definition Language */}
+          <div className="flex space-x-2 mt-2 w-[74%]"> {/* This wraps the inputs */}
             {/* Word Language Selector */}
             <select
               className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500"
@@ -167,12 +167,20 @@ const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, o
   );
 };
 
+// Helper function to re-arrange flashcards for proper order
+const reorderFlashcards = (flashcards, maxPerRow) => {
+  // Get the last 'maxPerRow' cards for the first row (newest ones), rest go to the next row
+  const firstRow = flashcards.slice(-maxPerRow);
+  const otherRows = flashcards.slice(0, -maxPerRow);
+  return [firstRow, otherRows];
+};
+
 // Parent Component to manage flashcards
 const FlashcardApp = () => {
   const [flashcards, setFlashcards] = useState([]);
 
   const addFlashcard = (newFlashcard) => {
-    setFlashcards((prevFlashcards) => [newFlashcard, ...prevFlashcards]);
+    setFlashcards((prevFlashcards) => [...prevFlashcards, newFlashcard]);
   };
 
   const deleteFlashcard = (indexToDelete) => {
@@ -181,21 +189,43 @@ const FlashcardApp = () => {
     );
   };
 
+  const maxCardsPerRow = 4;
+  const [firstRow, otherRows] = reorderFlashcards(flashcards, maxCardsPerRow); // Reorder cards
+
   return (
     <div className="container mx-auto">
       <Add addFlashcard={addFlashcard} />
-      <div className="mt-6 flex flex-wrap-reverse gap-4 justify-start">
-        {flashcards.map((flashcard, index) => (
-          <Flashcard
-            key={index}
-            word={flashcard.word}
-            type={flashcard.type}
-            definition={flashcard.definition}
-            wordLanguage={flashcard.wordLanguage}
-            definitionLanguage={flashcard.definitionLanguage}
-            onDelete={() => deleteFlashcard(index)}
-          />
-        ))}
+      <div className="mt-6 space-y-4">
+        {/* Display the first row of flashcards (the newest ones) */}
+        <div className="grid grid-cols-4 gap-4">
+          {firstRow.map((flashcard, index) => (
+            <Flashcard
+              key={index}
+              word={flashcard.word}
+              type={flashcard.type}
+              definition={flashcard.definition}
+              wordLanguage={flashcard.wordLanguage}
+              definitionLanguage={flashcard.definitionLanguage}
+              onDelete={() => deleteFlashcard(index)} // Index based on current rendering
+            />
+          ))}
+        </div>
+        {/* Display the remaining flashcards in subsequent rows */}
+        {otherRows.length > 0 && (
+          <div className="grid grid-cols-4 gap-4">
+            {otherRows.map((flashcard, index) => (
+              <Flashcard
+                key={index + firstRow.length} // Ensure unique keys
+                word={flashcard.word}
+                type={flashcard.type}
+                definition={flashcard.definition}
+                wordLanguage={flashcard.wordLanguage}
+                definitionLanguage={flashcard.definitionLanguage}
+                onDelete={() => deleteFlashcard(index + firstRow.length)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
