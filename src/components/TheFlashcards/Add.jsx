@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 // Abbreviations for languages
 const languageAbbreviations = {
@@ -121,24 +122,18 @@ const Add = ({ addFlashcard }) => {
 };
 
 // Flashcard Component
-const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, onDelete }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const flipCard = () => {
-    setIsFlipped(!isFlipped);
-  };
-
+const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, onDelete, isFlipped, onFlip }) => {
   return (
     <div
       className={`border rounded-lg p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
         isFlipped ? 'bg-gray-200' : 'bg-white'
       }`}
       style={{
-        width: '250px',
-        height: '180px',
+        width: '200px',
+        height: '160px',
         textAlign: 'center',
       }}
-      onClick={flipCard}
+      onClick={onFlip} // Call onFlip when the card is clicked
     >
       {!isFlipped ? (
         <div className="text-3xl font-extrabold text-lime-700 flex items-center justify-center">
@@ -161,7 +156,7 @@ const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, o
         className="absolute bottom-2 right-2 text-red-600 hover:text-red-800"
         title="Delete Flashcard"
       >
-        🗑️ {/* Delete icon (you can replace this with an SVG or any other icon) */}
+        <FaTrash size={16} />
       </button>
     </div>
   );
@@ -178,50 +173,60 @@ const reorderFlashcards = (flashcards, maxPerRow) => {
 // Parent Component to manage flashcards
 const FlashcardApp = () => {
   const [flashcards, setFlashcards] = useState([]);
+  const [flippedCards, setFlippedCards] = useState({}); // Store flip state for each card
 
   const addFlashcard = (newFlashcard) => {
     setFlashcards((prevFlashcards) => [...prevFlashcards, newFlashcard]);
+    setFlippedCards((prevState) => ({ ...prevState, [flashcards.length]: false })); // Initialize flip state for the new card
   };
 
   const deleteFlashcard = (indexToDelete) => {
     setFlashcards((prevFlashcards) =>
       prevFlashcards.filter((_, index) => index !== indexToDelete)
     );
+    setFlippedCards((prevState) => {
+      const newState = { ...prevState };
+      delete newState[indexToDelete]; // Remove flip state for the deleted card
+      return newState;
+    });
   };
 
-  const maxCardsPerRow = 4;
+  const flipCard = (index) => {
+    setFlippedCards((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index], // Toggle flip state for the specific card
+    }));
+  };
+
+  const maxCardsPerRow = 5; // Changed to 5 cards per row
   const [firstRow, otherRows] = reorderFlashcards(flashcards, maxCardsPerRow); // Reorder cards
 
   return (
     <div className="container mx-auto">
       <Add addFlashcard={addFlashcard} />
       <div className="mt-6 space-y-4">
-        {/* Display the first row of flashcards (the newest ones) */}
-        <div className="grid grid-cols-4 gap-4">
+        {/* Display the first row of flashcards */}
+        <div className="flex justify-center flex-wrap gap-4">
           {firstRow.map((flashcard, index) => (
             <Flashcard
               key={index}
-              word={flashcard.word}
-              type={flashcard.type}
-              definition={flashcard.definition}
-              wordLanguage={flashcard.wordLanguage}
-              definitionLanguage={flashcard.definitionLanguage}
-              onDelete={() => deleteFlashcard(index)} // Index based on current rendering
+              {...flashcard}
+              onDelete={() => deleteFlashcard(flashcards.indexOf(flashcard))}
+              isFlipped={flippedCards[flashcards.indexOf(flashcard)] || false}
+              onFlip={() => flipCard(flashcards.indexOf(flashcard))}
             />
           ))}
         </div>
-        {/* Display the remaining flashcards in subsequent rows */}
+        {/* Display the remaining rows of flashcards */}
         {otherRows.length > 0 && (
-          <div className="grid grid-cols-4 gap-4">
+          <div className="flex justify-center flex-wrap gap-4">
             {otherRows.map((flashcard, index) => (
               <Flashcard
-                key={index + firstRow.length} // Ensure unique keys
-                word={flashcard.word}
-                type={flashcard.type}
-                definition={flashcard.definition}
-                wordLanguage={flashcard.wordLanguage}
-                definitionLanguage={flashcard.definitionLanguage}
-                onDelete={() => deleteFlashcard(index + firstRow.length)}
+                key={index}
+                {...flashcard}
+                onDelete={() => deleteFlashcard(flashcards.indexOf(flashcard))}
+                isFlipped={flippedCards[flashcards.indexOf(flashcard)] || false}
+                onFlip={() => flipCard(flashcards.indexOf(flashcard))}
               />
             ))}
           </div>

@@ -4,7 +4,7 @@ import logo from '../image/logo.png';
 import '../index.css';
 import { IoIosClose, IoIosMenu } from "react-icons/io";
 import { useAuth } from '../context/AuthContext';
-import { FaUserCircle } from "react-icons/fa"; // For the profile icon
+import { FaUserCircle } from "react-icons/fa"; // profile icon
 import { Navigate, useNavigate } from 'react-router';
 
 const Header = () => {
