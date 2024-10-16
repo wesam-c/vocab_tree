@@ -3,17 +3,18 @@ import logo from '../image/logo.png';
 import '../index.css';
 import { IoIosClose, IoIosMenu } from "react-icons/io";
 import { useAuth } from '../context/AuthContext';
-import { FaUserCircle, FaSun, FaMoon } from "react-icons/fa"; // Importing Sun and Moon icons
+import { FaUserCircle, FaSun, FaMoon } from "react-icons/fa";
 import { Navigate, useNavigate } from 'react-router';
+import { useTheme } from '../context/ThemeContext'; 
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false); // State for menu
-  const [profileOpen, setProfileOpen] = useState(false); // State for profile dropdown
+  const [isOpen, setIsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const dropdownRef = useRef(null); // Ref for the dropdown menu
+  const dropdownRef = useRef(null);
 
-  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -32,16 +33,6 @@ const Header = () => {
     }
   };
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-  };
-
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -49,10 +40,8 @@ const Header = () => {
       }
     };
 
-    // Attach the listener to the document
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      // Cleanup the event listener on component unmount
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [dropdownRef]);
@@ -81,23 +70,12 @@ const Header = () => {
             )}
 
             {currentUser ? (
-              <div className="flex items-center relative mr-7"> {/* Flex container for profile icon and link */}
-                {/* Link to Vocab Tree Page */}
-                <a href="/" className="nav-item text-lime-700 hover:text-lime-400 mr-4">
-                  Home
-                </a>
-                <a href="/vocabTreePage" className="nav-item text-lime-700 hover:text-lime-400 mr-4">
-                  Add
-                </a>
-                <a href="/vocabTreePage" className="nav-item text-lime-700 hover:text-lime-400 mr-4">
-                  Cards
-                </a>
-                <div className="relative" ref={dropdownRef}> {/* Attach ref to the dropdown */}
-                  <button
-                    onClick={toggleProfileMenu}
-                    className="focus:outline-none"
-                    style={{ boxShadow: 'none' }} 
-                  >
+              <div className="flex items-center relative mr-7">
+                <a href="/" className="nav-item text-lime-700 hover:text-lime-400 mr-4">Home</a>
+                <a href="/vocabTreePage" className="nav-item text-lime-700 hover:text-lime-400 mr-4">Add</a>
+                <a href="/cards" className="nav-item text-lime-700 hover:text-lime-400 mr-4">Cards</a>
+                <div className="relative" ref={dropdownRef}>
+                  <button onClick={toggleProfileMenu} className="focus:outline-none" style={{ boxShadow: 'none' }}>
                     <FaUserCircle className="text-4xl text-lime-900 rounded-full" />
                   </button>
 
@@ -106,6 +84,20 @@ const Header = () => {
                       <a href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-item">Profile</a>
                       <a href="/editprofile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-item">Edit Profile</a>
                       <a href="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-item">Settings</a>
+                      
+                      {/* Theme Toggle Option moved above Logout */}
+                      <button 
+                        onClick={toggleTheme} 
+                        className="flex items-center justify-between px-4 py-2 w-full text-left"
+                      >
+                        <span className="text-sm text-gray-700 font-bold">Theme</span>
+                        {isDarkMode ? (
+                          <FaSun className="text-yellow-500" />
+                        ) : (
+                          <FaMoon className="text-gray-600" />
+                        )}
+                      </button>
+
                       <button
                         onClick={handleLogout}
                         className="block w-full text-left px-4 py-2 text-sm"
@@ -120,19 +112,6 @@ const Header = () => {
                         }}
                       >
                         Logout
-                      </button>
-
-                      {/* Theme Toggle Option */}
-                      <button 
-                        onClick={toggleTheme} 
-                        className="flex items-center justify-between px-4 py-2 w-full text-left"
-                      >
-                        <span className="text-sm text-gray-700">Theme</span>
-                        {isDarkMode ? (
-                          <FaSun className="text-yellow-500" />
-                        ) : (
-                          <FaMoon className="text-gray-600" />
-                        )}
                       </button>
                     </div>
                   )}
@@ -159,36 +138,9 @@ const Header = () => {
         )}
         {currentUser ? (
           <>
-            <a href="/vocabTreePage" className='block nav-item py-2'>Cards</a>
+            <a href="/cards" className='block nav-item py-2'>Cards</a>
             <a href="/profile" className='block nav-item py-2'>Edit Profile</a>
             <a href="/settings" className='block nav-item py-2'>Settings</a>
-            <button
-              onClick={handleLogout}
-              className='block nav-item py-2'
-              style={{ color: 'red', background: 'none', border: 'none', cursor: 'pointer' }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = 'red';
-                e.target.style.color = 'white';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'transparent';
-                e.target.style.color = 'red';
-              }}
-            >
-              Logout
-            </button>
-            {/* Theme Toggle Option for Mobile */}
-            <button 
-              onClick={toggleTheme} 
-              className="flex items-center justify-between px-4 py-2 w-full text-left"
-            >
-              <span className="text-sm text-gray-700">Theme</span>
-              {isDarkMode ? (
-                <FaSun className="text-yellow-500" />
-              ) : (
-                <FaMoon className="text-gray-600" />
-              )}
-            </button>
           </>
         ) : (
           <>

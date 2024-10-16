@@ -9,29 +9,38 @@ import BlogPage from './pages/Blog';
 import ForgetPasswordPage from './components/ForgetPassword';
 import ProfilePage from './pages/Profile';
 import RequireAuth from "./context/RequireAuth";
+import CardPage from './pages/Cards';
+import { ThemeProvider } from './context/ThemeContext';
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/vocabTreePage" element={
-          <RequireAuth>
-            <VocabTreePage />
-          </RequireAuth>
-        } />
-        <Route path="/SignIn" element={<SignInPage />} />
-        <Route path="/SignUp" element={<SignUpPage />} />
-        <Route path="/Blog" element={<BlogPage />} />
-        <Route path="/ForgetPassword" element={<ForgetPasswordPage />} />
-        <Route path="/profile" element={
-          <RequireAuth>
-            <ProfilePage />
-          </RequireAuth>
-        } />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/vocabTreePage" element={
+            <RequireAuth>
+              <VocabTreePage />
+            </RequireAuth>
+          } />
+          <Route path="/SignIn" element={<SignInPage />} />
+          <Route path="/SignUp" element={<SignUpPage />} />
+          <Route path="/Blog" element={<BlogPage />} />
+          <Route path="/ForgetPassword" element={<ForgetPasswordPage />} />
+          <Route path="/profile" element={
+            <RequireAuth>
+              <ProfilePage />
+            </RequireAuth>
+          } />
+          <Route path="/cards" element={
+            <RequireAuth>
+              <CardPage />
+            </RequireAuth>
+          } />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 
