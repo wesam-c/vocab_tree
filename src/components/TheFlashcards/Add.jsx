@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
 // Abbreviations for languages
@@ -126,7 +126,7 @@ const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, o
   return (
     <div
       className={`border rounded-lg p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
-        isFlipped ? 'bg-gray-200' : 'bg-white'
+        isFlipped ? 'bg-gray-200 dark:bg-gray-400' : 'bg-white dark:bg-gray-900'
       }`}
       style={{
         width: '200px',
@@ -175,15 +175,31 @@ const FlashcardApp = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [flippedCards, setFlippedCards] = useState({}); // Store flip state for each card
 
+  // Load flashcards from local storage when the component mounts
+  useEffect(() => {
+    const storedFlashcards = JSON.parse(localStorage.getItem('flashcards'));
+    if (storedFlashcards) {
+      setFlashcards(storedFlashcards);
+      // Initialize flip states for loaded flashcards
+      const initialFlippedStates = {};
+      storedFlashcards.forEach((_, index) => {
+        initialFlippedStates[index] = false;
+      });
+      setFlippedCards(initialFlippedStates);
+    }
+  }, []);
+
   const addFlashcard = (newFlashcard) => {
-    setFlashcards((prevFlashcards) => [...prevFlashcards, newFlashcard]);
-    setFlippedCards((prevState) => ({ ...prevState, [flashcards.length]: false })); // Initialize flip state for the new card
+    const updatedFlashcards = [...flashcards, newFlashcard];
+    setFlashcards(updatedFlashcards);
+    localStorage.setItem('flashcards', JSON.stringify(updatedFlashcards)); // Save to local storage
+    setFlippedCards((prevState) => ({ ...prevState, [updatedFlashcards.length - 1]: false })); // Initialize flip state for the new card
   };
 
   const deleteFlashcard = (indexToDelete) => {
-    setFlashcards((prevFlashcards) =>
-      prevFlashcards.filter((_, index) => index !== indexToDelete)
-    );
+    const updatedFlashcards = flashcards.filter((_, index) => index !== indexToDelete);
+    setFlashcards(updatedFlashcards);
+    localStorage.setItem('flashcards', JSON.stringify(updatedFlashcards)); // Update local storage
     setFlippedCards((prevState) => {
       const newState = { ...prevState };
       delete newState[indexToDelete]; // Remove flip state for the deleted card
