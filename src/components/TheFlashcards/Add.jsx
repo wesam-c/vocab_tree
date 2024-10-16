@@ -36,7 +36,7 @@ const Add = ({ addFlashcard }) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <div className="p-3.5 bg-white rounded-lg shadow-lg mt-2.5">
+      <div className="p-3.5 bg-white rounded-3xl shadow-lg mt-2.5">
         <h2 className="text-xl font-bold text-center mb-3 text-lime-700">Add New Flashcard</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -125,7 +125,7 @@ const Add = ({ addFlashcard }) => {
 const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, onDelete, isFlipped, onFlip }) => {
   return (
     <div
-      className={`border rounded-lg p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
+      className={`border rounded-3xl p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
         isFlipped ? 'bg-gray-200 dark:bg-gray-400' : 'bg-white dark:bg-gray-900'
       }`}
       style={{

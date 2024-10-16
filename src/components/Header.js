@@ -52,7 +52,7 @@ const Header = () => {
         <div className='flex justify-between items-center p-0.5 border-white/15 rounded-full bg-white/50 backdrop-blur'>
           <div className='flex items-center space-x-4'>
             <img src={logo} alt="Vocab Tree Logo" className='h-14' />
-            <div className='md:text-xl text-2xl font-bold text-lime-900 sofadi-one-regular'>Vocab Tree</div>
+            <div className='md:text-xl text-2xl font-bold text-lime-900 dark:text-black sofadi-one-regular'>Vocab Tree</div>
           </div>
 
           <button onClick={toggleMenu} className='md:hidden p-2'>
@@ -71,12 +71,12 @@ const Header = () => {
 
             {currentUser ? (
               <div className="flex items-center relative mr-7">
-                <a href="/" className="nav-item text-lime-700 hover:text-lime-400 mr-4">Home</a>
-                <a href="/vocabTreePage" className="nav-item text-lime-700 hover:text-lime-400 mr-4">Add</a>
-                <a href="/cards" className="nav-item text-lime-700 hover:text-lime-400 mr-4">Cards</a>
+                <a href="/" className="nav-item text-lime-700 dark:text-black hover:text-lime-400 dark:hover:text-slate-600 mr-4">Home</a>
+                <a href="/vocabTreePage" className="nav-item text-lime-700 dark:text-black hover:text-lime-400 dark:hover:text-slate-600 mr-4">Add</a>
+                <a href="/cards" className="nav-item text-lime-700 dark:text-black hover:text-lime-400 dark:hover:text-slate-600 mr-4">Cards</a>
                 <div className="relative" ref={dropdownRef}>
                   <button onClick={toggleProfileMenu} className="focus:outline-none" style={{ boxShadow: 'none' }}>
-                    <FaUserCircle className="text-4xl text-lime-900 rounded-full" />
+                    <FaUserCircle className="text-4xl text-lime-800 dark:text-black rounded-full" />
                   </button>
 
                   {profileOpen && (
