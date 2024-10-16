@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import { useTheme } from '../../context/ThemeContext';
 
 // Abbreviations for languages
 const languageAbbreviations = {
@@ -21,6 +22,7 @@ const Add = ({ addFlashcard }) => {
   const [type, setType] = useState('noun'); // Default to 'noun'
   const [wordLanguage, setWordLanguage] = useState('English'); // Default word language
   const [definitionLanguage, setDefinitionLanguage] = useState('English'); // Default definition language
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,8 +38,8 @@ const Add = ({ addFlashcard }) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <div className="p-3.5 bg-white rounded-3xl shadow-lg mt-2.5">
-        <h2 className="text-xl font-bold text-center mb-3 text-lime-700">Add New Flashcard</h2>
+      <div className={`p-3.5  rounded-3xl shadow-lg mt-2.5 ${isDarkMode ? 'bg-gray-600 ' : 'bg-white'}`}>
+        <h2 className="text-2xl font-bold text-center mb-3 text-lime-700 dark:text-slate-100">Add New Flashcard</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* First row: Word, Definition, and Type */}
@@ -110,7 +112,7 @@ const Add = ({ addFlashcard }) => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="bg-lime-700 text-white p-2 rounded w-1/3 hover:bg-lime-600 transition-all"
+              className="bg-lime-700 dark:bg-yellow-500 dark:hover:bg-yellow-400 text-white text-xl p-2 rounded w-1/3 hover:bg-lime-600 transition-all"
             >
               Add
             </button>
@@ -125,7 +127,7 @@ const Add = ({ addFlashcard }) => {
 const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, onDelete, isFlipped, onFlip }) => {
   return (
     <div
-      className={`border rounded-3xl p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
+      className={` rounded-3xl p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
         isFlipped ? 'bg-gray-200 dark:bg-gray-400' : 'bg-white dark:bg-gray-900'
       }`}
       style={{

@@ -2,10 +2,13 @@ import React from 'react';
 import { FaCog } from 'react-icons/fa'; // Importing settings icon from react-icons
 import profilePicture from '../../image/manprofile1.png'; // Default profile picture
 import coverPicture from '../../image/cover.png'; // Default cover picture
+import { useTheme } from '../../context/ThemeContext'; // Importing theme context
 
 const ProfileHeader = ({ user }) => {
+  const { isDarkMode, toggleTheme } = useTheme(); // Using theme context
+
   return (
-    <div className="relative bg-white shadow-md rounded-3xl">
+    <div className={`relative shadow-md rounded-3xl ${isDarkMode ? 'bg-gray-600 text-slate-100' : 'bg-white text-gray-600'}`}>
       {/* Cover Photo */}
       <div className="h-44 w-full rounded-t-lg overflow-hidden">
         <img 
@@ -19,6 +22,7 @@ const ProfileHeader = ({ user }) => {
       <button 
         className="absolute top-4 right-4 text-gray-300 hover:text-gray-500"
         title="Settings"
+        onClick={toggleTheme} // Example: Toggles the theme when clicked
       >
         <FaCog size={20} />
       </button>
@@ -38,14 +42,11 @@ const ProfileHeader = ({ user }) => {
       <div className="flex items-center justify-between mt-16 px-6"> {/* Flex container to align items horizontally */}
         {/* User Information (Left Aligned) */}
         <div className="flex flex-col">
-          <h2 className="text-lg font-bold">{user.name}</h2>
+          <h2 className="text-2xl font-bold">{user.name}</h2>
           <div className="flex items-center mt-2">
-           
-            <p className="text-gray-600">Joined: {user.joinDate}</p>
+            <p className="text-gray-600 dark:text-slate-400">Joined: {user.joinDate}</p>
           </div>
         </div>
-
-        
       </div>
     </div>
   );
