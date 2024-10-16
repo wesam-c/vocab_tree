@@ -49,7 +49,7 @@ const ProfileHeader = ({ user }) => {
                   </span>
                 ))
               ) : (
-                <p>No languages available</p>
+                <p>German, English, Arabic</p>
               )}
             </div>
             <span className="mx-2">•</span>
