@@ -1,5 +1,5 @@
 import React from "react";
-import woman from "../../image/the_woman.png";
+import woman from "../../image/sketching_girl.png";
 import {  motion } from "framer-motion";
 import { TbBrandFunimation } from "react-icons/tb";
 import { FaBookReader } from "react-icons/fa";
@@ -27,8 +27,8 @@ export const FadeUp = (delay) => {
 
 const Banner = () => {
     return (
-        <section>
-            <div className="bg-white md:py-24 py-14 grid grid-cols-1 md:grid-cols-2 gap-8 space-y-6 md:space-y-0">
+        <section className="bg-slate-400">
+            <div className=" md:py-24 py-14 grid grid-cols-1 md:grid-cols-2 gap-8 space-y-6 md:space-y-0">
                 {/* Banner IMG */}
                 <div className=" flex justify-center items-center">
                     <motion.img
@@ -38,7 +38,7 @@ const Banner = () => {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                         src={woman}
                         alt="woman"
-                        className="w-[320px] md:w-[400px] object-cover drop-shadow"
+                        className="w-[320px] md:w-[500px] object-cover drop-shadow"
                     />
                 </div>
                 {/* Banner TEXT */}
@@ -59,27 +59,27 @@ const Banner = () => {
                             initial="initial"
                             whileInView={"animate"}
                             viewport={{ once: true }}
-                            className="flex items-center gap-4 p-6 bg-[#f3f3f3] rounded-2xl hover:bg-white duration-300 hover:shadow-2xl">
-                            <TbBrandFunimation className="text-2xl"/>
-                            <p className="text-lg">Fun and User-Friendly Design</p>
+                            className="flex items-center gap-4 p-6  bg-[#f3f3f3] dark:bg-slate-600 rounded-2xl hover:bg-white dark:hover:bg-slate-800 duration-300 hover:shadow-2xl">
+                            <TbBrandFunimation className="text-2xl "/>
+                            <p className="text-lg  text-black dark:text-white">Fun and User-Friendly Design</p>
                         </ motion.div>
                         <motion.div
                             variants={FadeUp(0.4)}
                             initial="initial"
                             whileInView={"animate"}
                             viewport={{ once: true }}
-                            className="flex items-center gap-4 p-6 bg-[#f3f3f3] rounded-2xl hover:bg-white duration-300 hover:shadow-2xl">
+                            className="flex items-center gap-4 p-6  bg-[#f3f3f3] dark:bg-slate-600 rounded-2xl hover:bg-white dark:hover:bg-slate-800 duration-300 hover:shadow-2xl">
                             <FaBookReader className="text-2xl"/>
-                            <p className="text-lg">Interactive Learning Experience</p>
+                            <p className="text-lg text-black dark:text-white">Interactive Learning Experience</p>
                         </ motion.div>
                         <motion.div
                             variants={FadeUp(0.6)}
                             initial="initial"
                             whileInView={"animate"}
                             viewport={{ once: true }}
-                            className="flex items-center gap-4 p-6 bg-[#f3f3f3] rounded-2xl hover:bg-white duration-300 hover:shadow-2xl">
-                            <GrGrow className="text-2xl"/>
-                            <p className="text-lg">Personalized Progress Tracking</p>
+                            className="flex items-center gap-4 p-6  bg-[#f3f3f3] dark:bg-slate-600 rounded-2xl hover:bg-white dark:hover:bg-slate-800 duration-300 hover:shadow-2xl">
+                            <GrGrow className="text-2xl "/>
+                            <p className="text-lg text-black dark:text-white">Personalized Progress Tracking</p>
                         </ motion.div>
                     </div>
                 </div>
