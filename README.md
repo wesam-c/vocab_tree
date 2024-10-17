@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# Vocab Tree
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Learn and grow your vocabulary effortlessly using flashcards
 
-## Available Scripts
+## Technologies
 
-In the project directory, you can run:
+React, Firebase Auth, Tailwind css
 
 ### `npm start`
 
