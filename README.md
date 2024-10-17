@@ -6,4 +6,4 @@ Learn and grow your vocabulary effortlessly using flashcards
 
 React, Firebase Auth, Tailwind css
 
-
+Made with ♥ by Wesam Eldeeb
