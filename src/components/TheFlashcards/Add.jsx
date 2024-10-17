@@ -47,7 +47,7 @@ const Add = ({ addFlashcard }) => {
             {/* Word Input */}
             <input
               type="text"
-              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500 dark:focus:ring-yellow-400 dark:bg-gray-100"
               placeholder="Word"
               value={word}
               onChange={(e) => setWord(e.target.value)}
@@ -56,7 +56,7 @@ const Add = ({ addFlashcard }) => {
             {/* Definition Input */}
             <input
               type="text"
-              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500 dark:focus:ring-yellow-400 dark:bg-gray-100"
               placeholder="Definition"
               value={definition}
               onChange={(e) => setDefinition(e.target.value)}
@@ -64,7 +64,7 @@ const Add = ({ addFlashcard }) => {
 
             {/* Type Selector */}
             <select
-              className="border rounded p-2 text-sm w-1/3 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="border rounded p-2 text-sm w-1/3 focus:outline-none focus:ring-2 focus:ring-lime-500 dark:focus:ring-yellow-400 dark:bg-gray-100"
               value={type}
               onChange={(e) => setType(e.target.value)}
             >
@@ -83,7 +83,7 @@ const Add = ({ addFlashcard }) => {
           <div className="flex space-x-2 mt-2 w-[74%]"> {/* This wraps the inputs */}
             {/* Word Language Selector */}
             <select
-              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500 dark:focus:ring-yellow-400 dark:bg-gray-100"
               value={wordLanguage}
               onChange={(e) => setWordLanguage(e.target.value)}
             >
@@ -96,7 +96,7 @@ const Add = ({ addFlashcard }) => {
 
             {/* Definition Language Selector */}
             <select
-              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="border rounded p-2 text-sm w-1/2 focus:outline-none focus:ring-2 focus:ring-lime-500 dark:focus:ring-yellow-400 dark:bg-gray-100"
               value={definitionLanguage}
               onChange={(e) => setDefinitionLanguage(e.target.value)}
             >
@@ -128,7 +128,7 @@ const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, o
   return (
     <div
       className={` rounded-3xl p-4 text-sm cursor-pointer transition-transform transform hover:scale-105 shadow-lg flex items-center justify-center relative ${
-        isFlipped ? 'bg-gray-200 dark:bg-gray-400' : 'bg-white dark:bg-gray-900'
+        isFlipped ? 'bg-gray-200 dark:bg-gray-400' : 'bg-gray-100 dark:bg-gray-500'
       }`}
       style={{
         width: '200px',
@@ -138,9 +138,9 @@ const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, o
       onClick={onFlip} // Call onFlip when the card is clicked
     >
       {!isFlipped ? (
-        <div className="text-3xl font-extrabold text-lime-700 flex items-center justify-center">
+        <div className="text-3xl font-extrabold text-lime-700 dark:text-white flex items-center justify-center ">
           {word}
-          <span className="text-xs text-gray-500 ml-2">({languageAbbreviations[wordLanguage]})</span>
+          <span className="text-xs text-gray-500 ml-2 dark:text-yellow-200">({languageAbbreviations[wordLanguage]})</span>
         </div>
       ) : (
         <div className="text-black">
@@ -155,10 +155,10 @@ const Flashcard = ({ word, type, definition, wordLanguage, definitionLanguage, o
           e.stopPropagation(); // Prevent triggering flip card
           onDelete(); // Call the delete function
         }}
-        className="absolute bottom-2 right-2 text-red-600 hover:text-red-800"
+        className="absolute bottom-2 right-2 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-600"
         title="Delete Flashcard"
       >
-        <FaTrash size={16} />
+        <FaTrash size={17} />
       </button>
     </div>
   );
@@ -176,7 +176,7 @@ const reorderFlashcards = (flashcards, maxPerRow) => {
 const FlashcardApp = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [flippedCards, setFlippedCards] = useState({}); // Store flip state for each card
-
+  const { isDarkMode } = useTheme();
   // Load flashcards from local storage when the component mounts
   useEffect(() => {
     const storedFlashcards = JSON.parse(localStorage.getItem('flashcards'));
@@ -232,6 +232,7 @@ const FlashcardApp = () => {
               onDelete={() => deleteFlashcard(flashcards.indexOf(flashcard))}
               isFlipped={flippedCards[flashcards.indexOf(flashcard)] || false}
               onFlip={() => flipCard(flashcards.indexOf(flashcard))}
+              isDarkMode={isDarkMode}
             />
           ))}
         </div>
@@ -245,6 +246,7 @@ const FlashcardApp = () => {
                 onDelete={() => deleteFlashcard(flashcards.indexOf(flashcard))}
                 isFlipped={flippedCards[flashcards.indexOf(flashcard)] || false}
                 onFlip={() => flipCard(flashcards.indexOf(flashcard))}
+                isDarkMode={isDarkMode}
               />
             ))}
           </div>

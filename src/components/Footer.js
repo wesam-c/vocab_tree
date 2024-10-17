@@ -16,10 +16,10 @@ const Footer = () => {
         <div className="mb-4 w-full sm:w-1/3">
           <h4 className="text-md font-bold">Quick Links</h4>
           <ul className="mt-2 space-y-2">
-            <li><a href="#about" className="text-lime-600 hover:text-black no-underline text-lg">About Us</a></li>
-            <li><a href="#features" className="text-lime-600 hover:text-black no-underline text-lg">Features</a></li>
-            <li><a href="#contact" className="text-lime-600 hover:text-black no-underline text-lg">Contact</a></li>
-            <li><a href="#privacy" className="text-lime-600 hover:text-black no-underline text-lg">Privacy Policy</a></li>
+            <li><a href="#about" className="text-lime-600 hover:text-black no-underline text-lg dark:hover:text-white">About Us</a></li>
+            <li><a href="#features" className="text-lime-600 hover:text-black no-underline text-lg dark:hover:text-white">Features</a></li>
+            <li><a href="#contact" className="text-lime-600 hover:text-black no-underline text-lg dark:hover:text-white">Contact</a></li>
+            <li><a href="#privacy" className="text-lime-600 hover:text-black no-underline text-lg dark:hover:text-white">Privacy Policy</a></li>
           </ul>
         </div>
 
@@ -28,22 +28,22 @@ const Footer = () => {
           <h4 className="text-md font-bold">Follow Us</h4>
           <ul className="mt-2 flex space-x-4">
             <li>
-              <a href="https://facebook.com" className="text-lime-600 hover:text-black" aria-label="Facebook">
+              <a href="https://facebook.com" className="text-lime-600 hover:text-black dark:hover:text-white" aria-label="Facebook">
                 <FaFacebookF size={26} />
               </a>
             </li>
             <li>
-              <a href="https://twitter.com" className="text-lime-600 hover:text-black" aria-label="Twitter">
+              <a href="https://twitter.com" className="text-lime-600 hover:text-black dark:hover:text-white" aria-label="Twitter">
                 <FaTwitter size={26} />
               </a>
             </li>
             <li>
-              <a href="https://instagram.com" className="text-lime-600 hover:text-black" aria-label="Instagram">
+              <a href="https://instagram.com" className="text-lime-600 hover:text-black dark:hover:text-white" aria-label="Instagram">
                 <FaInstagram size={26} />
               </a>
             </li>
             <li>
-              <a href="https://linkedin.com" className="text-lime-600 hover:text-black" aria-label="LinkedIn">
+              <a href="https://linkedin.com" className="text-lime-600 hover:text-black dark:hover:text-white" aria-label="LinkedIn">
                 <FaLinkedinIn size={26} />
               </a>
             </li>

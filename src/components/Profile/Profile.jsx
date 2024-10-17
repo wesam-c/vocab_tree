@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCog } from 'react-icons/fa'; // Importing settings icon from react-icons
-import profilePicture from '../../image/manprofile1.png'; // Default profile picture
+import profilePicture from '../../image/womanprofile.jpg'; // Default profile picture
 import coverPicture from '../../image/cover.png'; // Default cover picture
 import { useTheme } from '../../context/ThemeContext'; // Importing theme context
 

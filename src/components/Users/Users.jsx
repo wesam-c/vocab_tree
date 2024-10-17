@@ -23,11 +23,11 @@ const Users = () => {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="flex flex-col justify-center">
                     <div className="text-center space-y-4 lg:max-w-[480px] mx-auto">
-                        <h1 className="text-2xl md:text-4xl font-bold !leading-snug">10k+ People Learning with Vocab Tree</h1>
+                        <h1 className="text-2xl md:text-6xl font-bold !leading-snug">10k+ People Learning with Vocab Tree</h1>
                         <p className="text-base md:text-lg text-gray-600">
                             Thousands of people are using Vocab Tree's flashcards to make learning new words easy and fun. Join them now!
                         </p>
-                        <a href="" className="!mt-8 rounded-2xl  inline-flex  bg-lime-400 text-white px-6 py-3 md:px-8 md:py-4 text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 no-underline">Join Now</a>
+                        <a href="" className="!mt-8 rounded-2xl  inline-flex  bg-lime-400 dark:bg-gray-600 text-white px-6 py-3 md:px-8 md:py-4 text-lg md:text-xl shadow-lg hover:bg-lime-600 transition duration-300 no-underline">Join Now</a>
                     </div>
                 </motion.div>
             </motion.div>

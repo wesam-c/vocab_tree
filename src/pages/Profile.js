@@ -2,12 +2,12 @@
 import React from 'react';
 import ProfileHeader from '../components/Profile/Profile';
 import ProfileInfoBox from '../components/Profile/Boxes';
+import SeeAllCardsCard from '../components/Profile/AllCardsSection';
 
 const ProfilePage = () => {
   const user = {
-    name: 'Language man',
-    joinDate: 'October 1, 2024', // Format the join date as needed
-     // Optional: Provide a URL or leave empty to use the default image
+    name: 'Wesam Ab',
+    joinDate: 'October 1, 2024', 
   };
 
   return (
@@ -17,8 +17,11 @@ const ProfilePage = () => {
         <ProfileHeader user={user} />
         {/* Additional profile sections can be added below */}
       </div>
-      <div className="container">
+      <div className="container mt-3">
         <ProfileInfoBox />
+      </div>
+      <div className="container">
+        <SeeAllCardsCard />
       </div>
     </div>
   );

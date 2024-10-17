@@ -60,8 +60,8 @@ const Banner = () => {
                             whileInView={"animate"}
                             viewport={{ once: true }}
                             className="flex items-center gap-4 p-6  bg-[#f3f3f3] dark:bg-slate-600 rounded-2xl hover:bg-white dark:hover:bg-slate-800 duration-300 hover:shadow-2xl">
-                            <TbBrandFunimation className="text-2xl "/>
-                            <p className="text-lg  text-black dark:text-white">Fun and User-Friendly Design</p>
+                            <TbBrandFunimation className="text-3xl dark:text-white"/>
+                            <p className="text-2xl  dark:text-white">Fun and User-Friendly Design</p>
                         </ motion.div>
                         <motion.div
                             variants={FadeUp(0.4)}
@@ -69,8 +69,8 @@ const Banner = () => {
                             whileInView={"animate"}
                             viewport={{ once: true }}
                             className="flex items-center gap-4 p-6  bg-[#f3f3f3] dark:bg-slate-600 rounded-2xl hover:bg-white dark:hover:bg-slate-800 duration-300 hover:shadow-2xl">
-                            <FaBookReader className="text-2xl"/>
-                            <p className="text-lg text-black dark:text-white">Interactive Learning Experience</p>
+                            <FaBookReader className="text-3xl dark:text-white"/>
+                            <p className="text-2xl dark:text-white">Interactive Learning Experience</p>
                         </ motion.div>
                         <motion.div
                             variants={FadeUp(0.6)}
@@ -78,8 +78,8 @@ const Banner = () => {
                             whileInView={"animate"}
                             viewport={{ once: true }}
                             className="flex items-center gap-4 p-6  bg-[#f3f3f3] dark:bg-slate-600 rounded-2xl hover:bg-white dark:hover:bg-slate-800 duration-300 hover:shadow-2xl">
-                            <GrGrow className="text-2xl "/>
-                            <p className="text-lg text-black dark:text-white">Personalized Progress Tracking</p>
+                            <GrGrow className="text-3xl dark:text-white "/>
+                            <p className="text-2xl dark:text-white">Personalized Progress Tracking</p>
                         </ motion.div>
                     </div>
                 </div>

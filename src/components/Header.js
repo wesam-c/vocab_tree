@@ -49,10 +49,10 @@ const Header = () => {
   return (
     <header className='bg-transparent shadow-none fixed top-0 left-0 w-full z-50'>
       <div className='container mx-auto px-4 py-4'>
-        <div className='flex justify-between items-center p-0.5 border-white/15 rounded-full bg-white/50 backdrop-blur'>
+        <div className='flex justify-between items-center p-0.5 border-white/15 rounded-full bg-white/50 dark:bg-slate-700 backdrop-blur'>
           <div className='flex items-center space-x-4'>
             <img src={logo} alt="Vocab Tree Logo" className='h-14' />
-            <div className='md:text-xl text-2xl font-bold text-lime-900 dark:text-black sofadi-one-regular'>Vocab Tree</div>
+            <div className='md:text-xl text-2xl font-bold text-lime-900 dark:text-gray-200 sofadi-one-regular'>Vocab Tree</div>
           </div>
 
           <button onClick={toggleMenu} className='md:hidden p-2'>
@@ -62,21 +62,19 @@ const Header = () => {
           <nav className={`md:flex items-center justify-between space-x-8 hidden ${isOpen ? 'block' : 'hidden'} md:block`}>
             {!currentUser && (
               <div className="flex space-x-8">
-                <a href="/" className='nav-item'>Home</a>
-                <a href="/about" className='nav-item'>About</a>
-                <a href="/blog" className='nav-item'>Blog</a>
-                <a href="/contact" className='nav-item'>Contact</a>
+                <a href="/" className='nav-item dark:text-gray-300'>Home</a>
+                <a href="/blog" className='nav-item dark:text-gray-300'>Blog</a>
               </div>
             )}
 
             {currentUser ? (
               <div className="flex items-center relative mr-7">
-                <a href="/" className="nav-item text-lime-700 dark:text-black hover:text-lime-400 dark:hover:text-slate-600 mr-4">Home</a>
-                <a href="/vocabTreePage" className="nav-item text-lime-700 dark:text-black hover:text-lime-400 dark:hover:text-slate-600 mr-4">Add</a>
-                <a href="/cards" className="nav-item text-lime-700 dark:text-black hover:text-lime-400 dark:hover:text-slate-600 mr-4">Cards</a>
+
+                <a href="/vocabTreePage" className="nav-item text-lime-700 dark:text-gray-300 hover:text-lime-400 dark:hover:text-slate-600 mr-4">Add</a>
+                <a href="/cards" className="nav-item text-lime-700 dark:text-gray-300 hover:text-lime-400 dark:hover:text-slate-600 mr-4">Cards</a>
                 <div className="relative" ref={dropdownRef}>
                   <button onClick={toggleProfileMenu} className="focus:outline-none" style={{ boxShadow: 'none' }}>
-                    <FaUserCircle className="text-4xl text-lime-800 dark:text-black rounded-full" />
+                    <FaUserCircle className="text-4xl text-lime-800 dark:text-gray-300 rounded-full" />
                   </button>
 
                   {profileOpen && (
@@ -119,9 +117,22 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex space-x-8">
-                <a href="/signin" className='nav-item text-lime-700 hover:text-lime-400'>Sign In</a>
-                <a href="/signup" className='nav-item text-lime-700 hover:text-lime-400'>Sign Up</a>
+              <div className="flex items-center space-x-3 mr-2">
+                <div className="flex space-x-3">
+                  <a href="/signin" className='nav-item text-lime-700 hover:text-lime-400 dark:text-yellow-400 dark:hover:text-yellow-300'>Sign In</a>
+                  <a href="/signup" className='nav-item text-lime-700 hover:text-lime-400 dark:text-yellow-400 dark:hover:text-yellow-300'>Sign Up</a>
+                </div>
+                {/* Theme Toggle Option */}
+                <button 
+                  onClick={toggleTheme}
+                  style={{ marginRight: '1rem' }}
+                >
+                  {isDarkMode ? (
+                    <FaSun className="text-yellow-500" />
+                  ) : (
+                    <FaMoon className="text-gray-600" />
+                  )}
+                </button>
               </div>
             )}
           </nav>
@@ -132,9 +143,8 @@ const Header = () => {
         {!currentUser && (
           <>
             <a href="/" className='block nav-item py-2'>Home</a>
-            <a href="/about" className='block nav-item py-2'>About</a>
             <a href="/blog" className='block nav-item py-2'>Blog</a>
-            <a href="/contact" className='block nav-item py-2'>Contact</a>
+            
           </>
         )}
         {currentUser ? (
@@ -147,6 +157,18 @@ const Header = () => {
           <>
             <a href="/signin" className='block nav-item py-2'>Sign In</a>
             <a href="/signup" className='block nav-item py-2'>Sign Up</a>
+           {/* Theme Toggle Option */}
+           <button 
+                onClick={toggleTheme} 
+                className="flex items-center justify-between px-4 py-2 w-full text-left"
+              >
+                <span className="text-lg text-gray-700 dark:text-gray-100 font-bold">Theme</span>
+                    {isDarkMode ? (
+                    <FaSun className="text-yellow-500" />
+                  ) : (
+                <FaMoon className="text-gray-600" />
+              )}
+            </button>
           </>
         )}
       </div>
